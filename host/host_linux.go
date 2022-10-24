@@ -205,6 +205,9 @@ func PlatformInformationWithContext(ctx context.Context) (platform string, famil
 		} else if lsb.ID == "LinuxMint" {
 			platform = "linuxmint"
 			version = lsb.Release
+		} else if lsb.ID == "\"Cumulus Linux\"" {
+			platform = "cumuluslinux"
+			version = lsb.Release
 		} else {
 			if common.PathExistsWithContents("/usr/bin/raspi-config") {
 				platform = "raspbian"
@@ -282,7 +285,7 @@ func PlatformInformationWithContext(ctx context.Context) (platform string, famil
 	platform = strings.Trim(platform, `"`)
 
 	switch platform {
-	case "debian", "ubuntu", "linuxmint", "raspbian":
+	case "debian", "ubuntu", "linuxmint", "raspbian", "cumuluslinux":
 		family = "debian"
 	case "fedora":
 		family = "fedora"
